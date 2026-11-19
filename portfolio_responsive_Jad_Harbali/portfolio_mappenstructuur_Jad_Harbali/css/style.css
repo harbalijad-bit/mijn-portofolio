@@ -1,0 +1,161 @@
+* { box-sizing: border-box; }
+
+/* Huisstijl: alle kleuren worden centraal beheerd */
+:root {
+    --primary-color: #172b4d;
+    --secondary-color: #2e669e;
+    --background-color: #f2f5fa;
+    --text-color: #202b3a;
+    --surface-color: #ffffff;
+    --header-subtitle-color: #d9eaff;
+    --border-color: #d9e6f5;
+    --footer-color: #dfe9f5;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    text-align: center;
+    padding: 52px 20px;
+}
+
+h1 { margin: 0; font-size: 36px; }
+header h2 { color: var(--header-subtitle-color); margin: 8px 0; }
+
+main {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 30px;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+}
+
+/* Verbetering 1: secties zijn duidelijker gescheiden */
+section {
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+    border-bottom: 2px solid var(--border-color);
+}
+section:last-child { margin-bottom: 0; border-bottom: 0; }
+main h2 {
+    color: var(--primary-color);
+    font-size: 26px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 8px;
+}
+h3 { color: var(--primary-color); }
+img, video { max-width: 100%; height: auto; }
+img[alt="Profielfoto van Jad"] {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Herbruikbare class-selectoren */
+.highlight { color: var(--secondary-color); font-weight: bold; }
+.kaart {
+    border-left: 4px solid var(--secondary-color);
+    padding-left: 18px;
+}
+
+/* Unieke id-selector */
+#projecten { padding-top: 10px; }
+
+/* Verbetering 2: duidelijker footercontrast en afscheiding */
+footer {
+    background-color: var(--footer-color);
+    color: var(--primary-color);
+    border-top: 4px solid var(--secondary-color);
+    text-align: center;
+    padding: 24px 20px;
+    font-weight: bold;
+}
+
+
+/* Projectkaarten: Box Model */
+.projectkaart {
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: var(--background-color);
+}
+.projectkaart img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.projectkaart a {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+.projectkaart a:hover { background-color: var(--primary-color); }
+
+/* Flexbox: drie projectkaarten naast elkaar */
+.projectkaarten {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 18px;
+}
+.projectkaarten .projectkaart {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+}
+.projectkaarten .projectkaart img {
+    height: 120px;
+}
+
+/* Navigatie op alle zes pagina's */
+nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+nav a { color: white; text-decoration: none; border: 1px solid #b8d2ed; border-radius: 7px; padding: 8px 16px; }
+nav a:hover, nav a[aria-current="page"] { background-color: var(--secondary-color); }
+.detail-afbeelding { display: block; width: 100%; max-width: 540px; max-height: 300px; object-fit: contain; margin: 18px 0; border-radius: 10px; background: var(--background-color); }
+.terug-link { display: inline-block; padding: 10px 16px; color: white; background: var(--secondary-color); text-decoration: none; border-radius: 6px; }
+.terug-link:hover { background: var(--primary-color); }
+
+/* Responsive design: tablet en mobiel (768px of smaller) */
+@media (max-width: 768px) {
+    header { padding: 30px 16px; }
+    h1 { font-size: 30px; }
+    header h2 { font-size: 20px; }
+    main { width: auto; margin: 16px; padding: 20px; }
+    main h2 { font-size: 23px; }
+
+    /* Flexbox: kaarten onder elkaar op smalle schermen */
+    .projectkaarten { flex-direction: column; gap: 16px; }
+    .projectkaarten .projectkaart { width: 100%; flex: 0 1 auto; }
+    .projectkaarten .projectkaart img { height: auto; max-height: 220px; object-fit: contain; }
+
+    /* Navigatie blijft klikbaar en past binnen het scherm */
+    nav { gap: 8px; }
+    nav a { padding: 8px 12px; }
+    img, video, .detail-afbeelding { max-width: 100%; }
+    img[alt="Profielfoto van Jad"] { width: min(250px, 100%); height: auto; aspect-ratio: 1; }
+}
+
+@media (max-width: 380px) {
+    main { margin: 10px; padding: 14px; }
+    h1 { font-size: 26px; }
+    nav a { padding: 7px 9px; font-size: 14px; }
+    .projectkaart { padding: 14px; }
+}
